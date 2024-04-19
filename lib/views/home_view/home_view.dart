@@ -15,8 +15,10 @@ class _HomeViewState extends State<HomeView> {
       length: 4,
       child: Stack(children: [
         PageView(
+          scrollDirection: Axis.vertical,
           children: const [
             HomePosts(),
+            HomePosts2(),
           ],
         ),
         Padding(
@@ -70,6 +72,26 @@ class _HomePostsState extends State<HomePosts> {
       children: [
         Container(
           color: Colors.deepPurpleAccent,
+        ),
+      ],
+    );
+  }
+}
+
+class HomePosts2 extends StatefulWidget {
+  const HomePosts2({super.key});
+
+  @override
+  State<HomePosts2> createState() => _HomePosts2State();
+}
+
+class _HomePosts2State extends State<HomePosts2> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          color: Colors.deepOrangeAccent,
         ),
       ],
     );
