@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -76,7 +77,7 @@ class _HomePostsState extends State<HomePosts> {
           color: Colors.deepPurpleAccent,
         ),
         Align(
-          alignment: Alignment(1, 1),
+          alignment: const Alignment(1, 1),
           child: Container(
             color: Colors.blue,
             height: MediaQuery.of(context).size.height * .55,
@@ -144,7 +145,7 @@ class _HomePostsState extends State<HomePosts> {
                     children: [
                       Container(
                         width: 44,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage("assets/images/cd.png"))),
                         child: Padding(
@@ -159,6 +160,42 @@ class _HomePostsState extends State<HomePosts> {
                       ),
                     ],
                   ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: const Alignment(-1, 1),
+          child: Container(
+            color: Colors.red,
+            height: MediaQuery.of(context).size.height * .2,
+            width: MediaQuery.of(context).size.width * .5,
+            child: const Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "CodX",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  Text.rich(TextSpan(children: <InlineSpan>[
+                    TextSpan(
+                      text: 'discreption',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '#Widget #flutter',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ])),
                 ],
               ),
             ),
