@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tik_tok_cloning_ui/views/add_post_view/add_post_view.dart';
 import 'package:tik_tok_cloning_ui/views/friendes_feed_view/friends_feed_view.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/home_view.dart';
@@ -94,7 +92,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     ),
                   ),
                   Align(
-                    alignment: Alignment(0, 0),
+                    alignment: const Alignment(0, 0),
                     child: Container(
                       width: 38,
                       height: 30,

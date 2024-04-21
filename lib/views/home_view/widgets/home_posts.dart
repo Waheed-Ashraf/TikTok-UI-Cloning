@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tik_tok_cloning_ui/data/model/posts_model.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
 import 'package:marquee/marquee.dart';
 
 class HomePosts extends StatefulWidget {
-  const HomePosts({super.key});
+  final PostsModel postsModel;
+  const HomePosts({super.key, required this.postsModel});
 
   @override
   State<HomePosts> createState() => _HomePostsState();
@@ -34,6 +36,7 @@ class _HomePostsState extends State<HomePosts> {
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Container(
                           width: 44,
+                          height: 44,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(22)),
@@ -42,7 +45,7 @@ class _HomePostsState extends State<HomePosts> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(22),
                               child: Image.asset(
-                                'assets/images/profile.png',
+                                widget.postsModel.userPic,
                               ),
                             ),
                           ),
@@ -67,21 +70,21 @@ class _HomePostsState extends State<HomePosts> {
                       )
                     ],
                   ),
-                  const PostButton(
-                    postIcon: Icon(FontAwesomeIcons.solidHeart),
-                    postReach: "1.2M",
+                  PostButton(
+                    postIcon: const Icon(FontAwesomeIcons.solidHeart),
+                    postReach: widget.postsModel.liksNum,
                   ),
-                  const PostButton(
-                    postIcon: Icon(FontAwesomeIcons.solidMessage),
-                    postReach: "1.2M",
+                  PostButton(
+                    postIcon: const Icon(FontAwesomeIcons.solidMessage),
+                    postReach: widget.postsModel.commentsNum,
                   ),
-                  const PostButton(
-                    postIcon: Icon(FontAwesomeIcons.solidBookmark),
-                    postReach: "1.2M",
+                  PostButton(
+                    postIcon: const Icon(FontAwesomeIcons.solidBookmark),
+                    postReach: widget.postsModel.bookMarkNum,
                   ),
-                  const PostButton(
-                    postIcon: Icon(FontAwesomeIcons.share),
-                    postReach: "1.2M",
+                  PostButton(
+                    postIcon: const Icon(FontAwesomeIcons.share),
+                    postReach: widget.postsModel.shareNum,
                   ),
                   Stack(
                     children: [
@@ -91,11 +94,11 @@ class _HomePostsState extends State<HomePosts> {
                             image: DecorationImage(
                                 image: AssetImage("assets/images/cd.png"))),
                         child: Padding(
-                          padding: const EdgeInsets.all(9),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(22),
-                            child: Image.asset(
-                              'assets/images/profile.png',
+                          padding: const EdgeInsets.all(10),
+                          child: CircleAvatar(
+                            radius: 11,
+                            backgroundImage: AssetImage(
+                              widget.postsModel.userPic,
                             ),
                           ),
                         ),
@@ -119,21 +122,19 @@ class _HomePostsState extends State<HomePosts> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Text(
-                    "CodX",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  Text(
+                    widget.postsModel.userName,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  const Text.rich(
+                  Text.rich(
                     TextSpan(children: <InlineSpan>[
                       TextSpan(
-                        text: 'Caption',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        text: widget.postsModel.postCaption,
                       ),
                       TextSpan(
-                        text: ' #Widget #flutter',
-                        style: TextStyle(
+                        text: widget.postsModel.postHashtags,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -156,7 +157,7 @@ class _HomePostsState extends State<HomePosts> {
                         width: MediaQuery.of(context).size.width * .45,
                         height: 20,
                         child: Marquee(
-                          text: 'Audio Name   .   ',
+                          text: '${widget.postsModel.audioName}   .   ',
                           velocity: 10,
                         ),
                       )

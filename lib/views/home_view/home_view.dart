@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tik_tok_cloning_ui/data/posts_data.dart';
 
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/home_posts.dart';
 
@@ -15,11 +16,14 @@ class _HomeViewState extends State<HomeView> {
     return DefaultTabController(
       length: 4,
       child: Stack(children: [
-        PageView(
+        PageView.builder(
           scrollDirection: Axis.vertical,
-          children: const [
-            HomePosts(),
-          ],
+          itemCount: homePosts.length,
+          itemBuilder: (context, index) {
+            return HomePosts(
+              postsModel: homePosts[index],
+            );
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
