@@ -1,3 +1,4 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
@@ -109,9 +110,9 @@ class _HomePostsState extends State<HomePosts> {
         Align(
           alignment: const Alignment(-1, 1),
           child: Container(
-            color: Colors.red,
-            height: MediaQuery.of(context).size.height * .2,
-            width: MediaQuery.of(context).size.width * .5,
+            color: Colors.transparent,
+            height: MediaQuery.of(context).size.height * .3,
+            width: MediaQuery.of(context).size.width * .6,
             child: const Padding(
               padding: EdgeInsets.only(left: 16, bottom: 8),
               child: Column(
@@ -122,21 +123,23 @@ class _HomePostsState extends State<HomePosts> {
                     "CodX",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  Text.rich(TextSpan(children: <InlineSpan>[
-                    TextSpan(
-                      text: 'discreption',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                  Text.rich(
+                    TextSpan(children: <InlineSpan>[
+                      TextSpan(
+                        text: 'Caption',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: '#Widget #flutter',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        overflow: TextOverflow.ellipsis,
+                      TextSpan(
+                        text: ' #Widget #flutter',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                  ])),
+                    ]),
+                  ),
                 ],
               ),
             ),
