@@ -11,17 +11,26 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int _snappedPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Stack(children: [
         PageView.builder(
+          onPageChanged: (int pageNum) {
+            setState(() {
+              _snappedPageIndex = pageNum;
+            });
+          },
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: homePosts.length,
           itemBuilder: (context, index) {
             return HomePosts(
               postsModel: homePosts[index],
+              currentIndex: index,
+              snappedPagIndex: _snappedPageIndex,
             );
           },
         ),

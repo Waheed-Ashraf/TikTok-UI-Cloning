@@ -3,10 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tik_tok_cloning_ui/data/model/posts_model.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
 import 'package:marquee/marquee.dart';
+import 'package:tik_tok_cloning_ui/views/home_view/widgets/video.dart';
 
 class HomePosts extends StatefulWidget {
   final PostsModel postsModel;
-  const HomePosts({super.key, required this.postsModel});
+  final int snappedPagIndex;
+  final int currentIndex;
+  const HomePosts(
+      {super.key,
+      required this.postsModel,
+      required this.snappedPagIndex,
+      required this.currentIndex});
 
   @override
   State<HomePosts> createState() => _HomePostsState();
@@ -17,13 +24,14 @@ class _HomePostsState extends State<HomePosts> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          color: Colors.deepPurpleAccent,
+        Video(
+          videoUrl: widget.postsModel.videoUrl,
+          currentIndex: widget.currentIndex,
+          snappedPagIndex: widget.snappedPagIndex,
         ),
         Align(
           alignment: const Alignment(1, 1),
           child: Container(
-            color: Colors.blue,
             height: MediaQuery.of(context).size.height * .55,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
