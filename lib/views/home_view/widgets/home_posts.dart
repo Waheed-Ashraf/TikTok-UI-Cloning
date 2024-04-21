@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
 import 'package:marquee/marquee.dart';
