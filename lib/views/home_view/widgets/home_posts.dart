@@ -1,7 +1,8 @@
-import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
+import 'package:marquee/marquee.dart';
 
 class HomePosts extends StatefulWidget {
   const HomePosts({super.key});
@@ -113,17 +114,17 @@ class _HomePostsState extends State<HomePosts> {
             color: Colors.transparent,
             height: MediaQuery.of(context).size.height * .3,
             width: MediaQuery.of(context).size.width * .6,
-            child: const Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 8),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, bottom: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
+                  const Text(
                     "CodX",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(children: <InlineSpan>[
                       TextSpan(
                         text: 'Caption',
@@ -140,6 +141,28 @@ class _HomePostsState extends State<HomePosts> {
                       ),
                     ]),
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        FontAwesomeIcons.music,
+                        size: 15,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .45,
+                        height: 20,
+                        child: Marquee(
+                          text: 'Audio Name   .   ',
+                          velocity: 10,
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
