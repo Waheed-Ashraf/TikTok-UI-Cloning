@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         brightness: Brightness.dark,
       ),
       home: const BottomNavBar(),
