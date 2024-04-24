@@ -5,7 +5,7 @@ import 'package:tik_tok_cloning_ui/views/home_view/widgets/post_button.dart';
 import 'package:marquee/marquee.dart';
 import 'package:tik_tok_cloning_ui/views/home_view/widgets/video.dart';
 
-class HomePosts extends StatefulWidget {
+class HomePosts extends StatelessWidget {
   final PostsModel postsModel;
   final int snappedPagIndex;
   final int currentIndex;
@@ -16,22 +16,21 @@ class HomePosts extends StatefulWidget {
       required this.currentIndex});
 
   @override
-  State<HomePosts> createState() => _HomePostsState();
-}
-
-class _HomePostsState extends State<HomePosts> {
-  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // post Video ==================================>>
+
         Video(
-          videoUrl: widget.postsModel.videoUrl,
-          currentIndex: widget.currentIndex,
-          snappedPagIndex: widget.snappedPagIndex,
+          videoUrl: postsModel.videoUrl,
+          currentIndex: currentIndex,
+          snappedPagIndex: snappedPagIndex,
         ),
+        // post Reatch ==================================>>
+
         Align(
           alignment: const Alignment(1, 1),
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * .55,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -53,7 +52,7 @@ class _HomePostsState extends State<HomePosts> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(22),
                               child: Image.asset(
-                                widget.postsModel.userPic,
+                                postsModel.userPic,
                               ),
                             ),
                           ),
@@ -80,19 +79,19 @@ class _HomePostsState extends State<HomePosts> {
                   ),
                   PostButton(
                     postIcon: const Icon(FontAwesomeIcons.solidHeart),
-                    postReach: widget.postsModel.liksNum,
+                    postReach: postsModel.liksNum,
                   ),
                   PostButton(
                     postIcon: const Icon(FontAwesomeIcons.solidMessage),
-                    postReach: widget.postsModel.commentsNum,
+                    postReach: postsModel.commentsNum,
                   ),
                   PostButton(
                     postIcon: const Icon(FontAwesomeIcons.solidBookmark),
-                    postReach: widget.postsModel.bookMarkNum,
+                    postReach: postsModel.bookMarkNum,
                   ),
                   PostButton(
                     postIcon: const Icon(FontAwesomeIcons.share),
-                    postReach: widget.postsModel.shareNum,
+                    postReach: postsModel.shareNum,
                   ),
                   Stack(
                     children: [
@@ -106,7 +105,7 @@ class _HomePostsState extends State<HomePosts> {
                           child: CircleAvatar(
                             radius: 11,
                             backgroundImage: AssetImage(
-                              widget.postsModel.userPic,
+                              postsModel.userPic,
                             ),
                           ),
                         ),
@@ -118,6 +117,7 @@ class _HomePostsState extends State<HomePosts> {
             ),
           ),
         ),
+        // post details ==================================>>
         Align(
           alignment: const Alignment(-1, 1),
           child: Container(
@@ -131,17 +131,17 @@ class _HomePostsState extends State<HomePosts> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    widget.postsModel.userName,
+                    postsModel.userName,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text.rich(
                     TextSpan(children: <InlineSpan>[
                       TextSpan(
-                        text: widget.postsModel.postCaption,
+                        text: postsModel.postCaption,
                       ),
                       TextSpan(
-                        text: widget.postsModel.postHashtags,
+                        text: postsModel.postHashtags,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.ellipsis,
@@ -165,7 +165,7 @@ class _HomePostsState extends State<HomePosts> {
                         width: MediaQuery.of(context).size.width * .45,
                         height: 20,
                         child: Marquee(
-                          text: '${widget.postsModel.audioName}   .   ',
+                          text: '${postsModel.audioName}   .   ',
                           velocity: 10,
                         ),
                       )

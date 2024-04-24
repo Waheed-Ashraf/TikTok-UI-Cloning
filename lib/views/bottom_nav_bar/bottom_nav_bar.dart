@@ -22,54 +22,52 @@ class _BottomNavBarState extends State<BottomNavBar> {
   ];
   void _selectPage(int index) {
     setState(() {
-      _selectedIndex = index;
+      _currentPage = index;
     });
   }
 
-  int _selectedIndex = 0;
+  int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: views[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectPage,
-        currentIndex: _selectedIndex,
+        currentIndex: _currentPage,
+        onTap: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.transparent,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         elevation: 0,
         selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
           color: Colors.white,
+          fontWeight: FontWeight.bold,
         ),
+        iconSize: 28,
         items: [
           BottomNavigationBarItem(
-            icon: _selectedIndex == 0
+            icon: _currentPage == 0
                 ? const Icon(
                     Icons.home,
-                    color: Colors.white,
-                    size: 25,
                   )
                 : const Icon(
                     Icons.home_outlined,
-                    size: 25,
-                    color: Colors.white,
                   ),
-            label: 'Home',
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 1
+            icon: _currentPage == 1
                 ? const Icon(
                     Icons.group,
-                    color: Colors.white,
-                    size: 25,
                   )
                 : const Icon(
                     Icons.group_outlined,
-                    size: 25,
-                    color: Colors.white,
                   ),
-            label: 'Friends',
+            label: "Friends",
           ),
           BottomNavigationBarItem(
             icon: Stack(
@@ -80,8 +78,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     width: 45,
                     height: 30,
                     decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            colors: [Colors.cyan, Colors.pink]),
+                        gradient: const LinearGradient(colors: [
+                          Colors.cyan,
+                          Colors.pink,
+                        ]),
                         borderRadius: BorderRadius.circular(10)),
                   ),
                 ),
@@ -91,50 +91,44 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     width: 38,
                     height: 30,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Icon(
-                      Icons.add,
-                      size: 20,
-                      color: Colors.black,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.black,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            label: '',
+            label: "",
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 3
+            icon: _currentPage == 3
                 ? const Icon(
                     Icons.message,
-                    color: Colors.white,
-                    size: 25,
                   )
                 : const Icon(
                     Icons.message_outlined,
-                    size: 25,
-                    color: Colors.white,
                   ),
-            label: 'Inbox',
+            label: "Inbox",
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 4
+            icon: _currentPage == 4
                 ? const Icon(
                     Icons.person,
-                    color: Colors.white,
-                    size: 25,
                   )
                 : const Icon(
                     Icons.person_outline,
-                    size: 25,
-                    color: Colors.white,
                   ),
-            label: 'Profile',
+            label: "Profile",
           ),
         ],
       ),
-      body: views[_selectedIndex],
     );
   }
 }
