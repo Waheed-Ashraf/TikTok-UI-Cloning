@@ -40,24 +40,17 @@ class HomePosts extends StatelessWidget {
                   Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Container(
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(22)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(22),
-                              child: Image.asset(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: CircleAvatar(
+                            radius: 22,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundImage: AssetImage(
                                 postsModel.userPic,
                               ),
                             ),
-                          ),
-                        ),
-                      ),
+                          )),
                       Positioned(
                         bottom: 0,
                         left: 12.5,
