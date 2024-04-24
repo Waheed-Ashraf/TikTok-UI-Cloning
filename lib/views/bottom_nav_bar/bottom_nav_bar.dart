@@ -20,11 +20,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     InpoxView(),
     Profile(),
   ];
-  void _selectPage(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-  }
 
   int _currentPage = 0;
   @override
