@@ -9,11 +9,12 @@ class HomePosts extends StatelessWidget {
   final PostsModel postsModel;
   final int snappedPagIndex;
   final int currentIndex;
-  const HomePosts(
-      {super.key,
-      required this.postsModel,
-      required this.snappedPagIndex,
-      required this.currentIndex});
+  const HomePosts({
+    super.key,
+    required this.postsModel,
+    required this.snappedPagIndex,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {

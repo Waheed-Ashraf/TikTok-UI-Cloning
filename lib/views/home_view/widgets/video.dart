@@ -7,11 +7,12 @@ class Video extends StatefulWidget {
   final int snappedPagIndex;
   final int currentIndex;
 
-  const Video(
-      {super.key,
-      required this.videoUrl,
-      required this.snappedPagIndex,
-      required this.currentIndex});
+  const Video({
+    super.key,
+    required this.videoUrl,
+    required this.snappedPagIndex,
+    required this.currentIndex,
+  });
 
   @override
   State<Video> createState() => _VideoState();
@@ -53,40 +54,42 @@ class _VideoState extends State<Video> {
     (widget.snappedPagIndex == widget.currentIndex && _isVideoPlaying)
         ? _videoPlayerController.play()
         : _videoPlayerController.pause();
-    return Container(
-      color: Colors.black,
-      child: FutureBuilder(
-        future: _initializeVideoPlayer,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return GestureDetector(
-              onTap: () {
-                _playPauseVideo();
-              },
-              child: Stack(children: [
-                VideoPlayer(_videoPlayerController),
-                Center(
-                  child: IconButton(
-                      onPressed: () {
-                        _playPauseVideo();
-                      },
-                      icon: Icon(
-                        Icons.play_arrow_rounded,
-                        color: _isVideoPlaying
-                            ? Colors.transparent
-                            : Colors.white.withOpacity(.5),
-                        size: 60,
-                      )),
-                )
-              ]),
-            );
-          } else {
-            return Center(
-              child: Lottie.asset('assets/images/TikTokLoadingAnimation.json',
-                  width: 60, height: 60, fit: BoxFit.contain),
-            );
-          }
-        },
+    return Center(
+      child: Container(
+        color: Colors.black,
+        child: FutureBuilder(
+          future: _initializeVideoPlayer,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return GestureDetector(
+                onTap: () {
+                  _playPauseVideo();
+                },
+                child: Stack(children: [
+                  VideoPlayer(_videoPlayerController),
+                  Center(
+                    child: IconButton(
+                        onPressed: () {
+                          _playPauseVideo();
+                        },
+                        icon: Icon(
+                          Icons.play_arrow_rounded,
+                          color: _isVideoPlaying
+                              ? Colors.transparent
+                              : Colors.white.withOpacity(.5),
+                          size: 60,
+                        )),
+                  )
+                ]),
+              );
+            } else {
+              return Center(
+                child: Lottie.asset('assets/images/TikTokLoadingAnimation.json',
+                    width: 60, height: 60, fit: BoxFit.contain),
+              );
+            }
+          },
+        ),
       ),
     );
   }

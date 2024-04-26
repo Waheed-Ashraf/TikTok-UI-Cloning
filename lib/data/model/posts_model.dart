@@ -6,7 +6,6 @@ class PostsModel {
   final String userName;
   final String userPic;
   String bookMarkNum = "0";
-
   final String postCaption;
   final String postHashtags;
 
